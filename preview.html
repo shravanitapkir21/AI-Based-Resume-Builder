@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareerCraft | Resume Preview (AI)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(90deg,#e6f4ff 0%, #f6fbff 100%);
+      color: #122;
+      min-height: 100vh;
+      -webkit-font-smoothing:antialiased;
+    }
+    header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.06); padding: 12px 20px; display:flex; justify-content:space-between; align-items:center; color:#007bff; position: sticky; top: 0; z-index: 100; }
+    .logo { display:flex; align-items:center; gap:10px; font-size: 24px; font-weight:700; color:#007bff; }
+    .logo img { width:55px; height:50px; object-fit:contain; }
+    nav { display:flex; gap:18px; align-items:center; }
+    nav a { color:#007bff; text-decoration:none; font-weight:600; padding:6px 10px; border-radius:8px; }
+    nav a:hover { background: rgba(0,123,255,0.06); color:#0056b3; }
+    nav a.active { font-weight:700; color:#0056b3; background: rgba(0,86,179,0.1); border-radius:8px; }
+
+    .hero { background:none; color:#122; padding:80px 24px 40px; }
+    .hero-inner { max-width:1100px; margin:auto; display:grid; grid-template-columns:1fr 360px; gap:30px; align-items:center; }
+    .hero-left h1 { font-size:44px; margin-bottom:14px; color:#0056b3; font-weight:700; }
+    .hero-left p { color:#334155; margin-bottom:22px; max-width:600px; font-size:17px; }
+    .cta { display:inline-block; background: #007bff; color:#fff; padding:12px 26px; border-radius:28px; text-decoration:none; font-weight:700; box-shadow:0 8px 28px rgba(0,123,255,0.12); transition: transform .18s ease, background .18s ease; }
+    .cta:hover { transform: translateY(-3px); background: #0056b3; }
+    .hero-right img { width:100%; max-width:320px; border-radius:10px; display:block; }
+
+    .form-section { padding:42px 16px 80px; }
+    .resume-wrapper { max-width:1000px; margin:auto; background:white; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,0.08); overflow:hidden; }
+
+    .resume { display:grid; grid-template-columns:340px 1fr; min-height:920px; }
+
+    .left { background:#f7f7f7; padding:44px 28px; }
+    .name { font-size:28px; font-weight:800; margin-bottom:4px; letter-spacing:0.6px; }
+    .name .light { font-weight:300; }
+    .job-title { font-size:13px; letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; color:#333; }
+
+    .section { margin-bottom:28px; }
+    .section h3 { font-size:13px; letter-spacing:1.6px; margin-bottom:14px; font-weight:800; text-transform:uppercase; color:#222; }
+    .contact-item { display:flex; gap:10px; align-items:flex-start; font-size:13px; margin-bottom:10px; color:#333; }
+    .edu-item { margin-bottom:14px; }
+    .edu-item .period { font-weight:700; font-size:12px; color:#222; margin-bottom:6px; }
+    .edu-item .school { font-weight:700; font-size:13px; margin-bottom:6px; }
+    .skill-item { font-size:13px; margin-bottom:10px; color:#333; }
+
+    .right { padding:40px 40px; }
+    .section-title { font-size:14px; font-weight:800; letter-spacing:2px; margin-bottom:12px; position:relative; padding-bottom:8px; }
+    .section-title::after { content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:#000; opacity:0.08; }
+
+    .profile-text { font-size:14px; line-height:1.7; color:#333; margin-bottom:20px; text-align:justify; }
+
+    .job { margin-bottom:22px; }
+    .company-name { font-weight:700; font-size:15px; }
+    .position { font-size:13px; color:#555; margin-bottom:4px; }
+    .job-period { font-size:12px; color:#555; margin-bottom:8px; }
+    .job ul { margin-left:14px; padding-left:0; }
+    .job li { margin-bottom:6px; font-size:13px; color:#333; }
+
+    .project-box { margin-bottom:16px; }
+    .project-box h4 { font-weight:700; font-size:14px; margin-bottom:6px; }
+    .project-box p { font-size:13px; color:#333; margin-bottom:4px; }
+
+    .btn-bar { text-align:center; margin:28px 0 48px; }
+    .mini-btn { background:linear-gradient(180deg,#007bff,#0056b3); color:white; border-radius:32px; padding:14px 36px; border:none; cursor:pointer; margin:0 10px; font-weight:700; font-size:16px; box-shadow:0 12px 36px rgba(0,123,255,0.12); transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease; }
+    .mini-btn:hover { transform: translateY(-3px); opacity:0.92; box-shadow:0 18px 48px rgba(0,123,255,0.14); }
+    .mini-btn:active { transform: scale(.98); opacity:0.9; }
+    .mini-btn:focus { outline: 3px solid rgba(0,123,255,0.12); outline-offset:2px; }
+
+    .ai-fab { position:fixed; right:20px; bottom:20px; width:62px; height:62px; border-radius:50%; background:linear-gradient(135deg,#00c6ff,#0056b3); color:white; display:flex; justify-content:center; align-items:center; box-shadow:0 10px 26px rgba(0,86,179,0.28); cursor:pointer; z-index:1200; border:2px solid rgba(255,255,255,0.12); transition:transform .15s ease; }
+    .ai-fab:active { transform:scale(.98); }
+    .ai-fab .dot { font-weight:800; font-size:20px; }
+
+    .ai-drawer { position:fixed; right:20px; bottom:96px; width:360px; max-height:68vh; background:white; border-radius:12px; box-shadow:0 18px 60px rgba(2,6,23,0.18); overflow:auto; z-index:1199; transform-origin:bottom right; display:none; flex-direction:column; padding:14px; border:1px solid rgba(0,0,0,0.05); }
+    .ai-drawer.visible { display:flex; }
+    .ai-header { display:flex; justify-content:space-between; align-items:center; gap:12px; padding-bottom:8px; border-bottom:1px solid #eef3fb; }
+    .ai-header h4 { font-size:15px; }
+    .ai-actions { margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+    .ai-actions button { padding:10px 12px; border-radius:8px; border:none; cursor:pointer; text-align:left; background:#f6fbff; font-weight:600; color:#003d82; }
+    .ai-output { margin-top:12px; font-size:13px; color:#222; line-height:1.6; background:#fbfdff; border-radius:8px; padding:10px; border:1px solid #eef6ff; max-height:42vh; overflow:auto; white-space:pre-wrap; }
+    .ai-footer { margin-top:10px; display:flex; justify-content:space-between; gap:8px; align-items:center; }
+
+    .muted { color:#64748b; font-size:13px; }
+
+    footer { background: #062845; color: white; padding: 60px 10% 30px; }
+    .footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 30px; }
+    .footer-container div { width: 250px; }
+    footer h4 { margin-bottom: 10px; }
+    footer a { text-decoration: none; color: white; font-size: 14px; }
+    footer a:hover { text-decoration: underline; }
+    .copy { text-align: center; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; font-size: 14px; }
+
+    @media (max-width:920px) {
+      .hero-inner { grid-template-columns:1fr; text-align:center; gap:18px; }
+      .resume { grid-template-columns:1fr; min-height:auto; }
+      .left { padding:28px; }
+      .right { padding:28px; }
+      .ai-drawer { right:12px; left:12px; width:auto; bottom:88px; }
+    }
+
+    /* print defaults: still keep for direct printing fallback */
+    @media print {
+      :root, html, body { background: #fff !important; color: #000 !important; -webkit-print-color-adjust: exact; }
+      body * { visibility: hidden !important; }
+      #resumeCard, #resumeCard * { visibility: visible !important; }
+      #resumeCard { position: absolute !important; left: 0 !important; top: 0 !important; width: 100% !important; margin: 0 !important; box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; }
+      header, footer, .hero, .ai-fab, .ai-drawer, .btn-bar { display: none !important; }
+      .project-box, .job { page-break-inside: avoid !important; }
+      @page { margin: 12mm; size: A4 portrait; }
+    }
+
+    .skill-chip {
+     display:inline-block;
+     background:#e6f2ff;
+     color:#0056b3;
+     padding:6px 12px;
+     border-radius:18px;
+     font-size:12px;
+     font-weight:600;
+     margin:4px 6px 4px 0;
+    }
+
+    .project-card {
+    border:1px solid #eef2f7;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:14px;
+    background:#fff;
+  }
+   .project-tech {
+   font-size:12px;
+   color:#555;
+   margin-top:6px;
+  }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="CareerCraft Logo">
+      <span>CareerCraft</span>
+    </div>
+    <nav>
+      <a href="personal_info.html">Personal Info</a>
+      <a href="education.html">Education</a>
+      <a href="experience.html">Experience</a>
+      <a href="expertise_projects.html">Expertise & Projects</a>
+      <a href="skills_debug.html">Skills</a>
+      <a href="preview.html" class="active">Preview</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-hidden="true">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <h1>Your Resume Preview</h1>
+        <p>All details entered across Personal Info, Education, Experience and Projects will appear here. Use the AI button (bottom-right) to auto-generate a summary, improve bullets, suggest skills or auto-fill a job title.</p>
+        <a class="cta" href="#resumeCard">View Resume</a>
+      </div>
+      <div class="hero-right">
+        <img src="https://img.freepik.com/premium-vector/online-resume-application-form-man-fills-out-online-resume-modern-flat-illustration_566886-1157.jpg" alt="resume preview">
+      </div>
+    </div>
+  </section>
+
+   <div class="muted" style="text-align:center;margin:20px 0 12px;font-size:13px;">
+    This resume is generated using CareerCraft — a smart resume builder with AI assistance.
+   </div>
+
+  <!-- RESUME PREVIEW -->
+  <section class="form-section">
+    <div id="resumeCard" class="resume-wrapper">
+      <main class="resume">
+        <!-- LEFT -->
+        <aside class="left">
+        <div class="name" id="nameDisplay">YOUR NAME</div>
+        <div class="job-title" id="titleDisplay">YOUR TITLE</div>
+
+         <div style="height:2px;width:60px;background:#007bff;margin:14px 0;"></div>
+
+         <div class="muted" style="font-size:13px;line-height:1.6;">
+         Passionate professional focused on building practical, real-world solutions.
+        </div>
+
+
+          <section class="section contact">
+            <h3>CONTACT</h3>
+            <div id="contactDisplay">
+              <div class="contact-item muted">No contact information saved.</div>
+            </div>
+          </section>
+
+          <section class="section education">
+            <h3>EDUCATION</h3>
+            <div id="educationDisplay">
+              <div class="edu-item"><div class="school muted">No education saved.</div></div>
+            </div>
+          </section>
+
+          <section class="section skills">
+            <h3>SKILLS</h3>
+            <div id="skillsDisplay"><div class="skill-item muted">No skills added.</div></div>
+          </section>
+        </aside>
+
+        <!-- RIGHT -->
+        <section class="right">
+          <div class="right-section">
+            <div class="section-title">PROFILE SUMMARY</div>
+            <p id="profileDisplay" class="profile-text">Add a summary in Personal Info or use the AI -> Generate Summary button.</p>
+          </div>
+
+          <div class="right-section">
+            <div class="section-title">WORK EXPERIENCE</div>
+            <div id="experienceDisplay">
+              <div class="job"><div class="company-name muted">No experience saved.</div></div>
+            </div>
+          </div>
+
+          <div class="right-section">
+            <div class="section-title">PROJECTS</div>
+            <div id="projectsDisplay"><div class="project-box"><div class="muted">No projects added.</div></div></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <div class="btn-bar" aria-hidden="true">
+    <div style="text-align:center;margin-top:18px;" class="muted">
+     Resume last updated: <span id="resumeUpdatedAt">—</span>
+    </div>
+
+    <button class="mini-btn" onclick="printSinglePageA4()">Download / Print</button>
+    <a href="expertise_projects.html"><button class="mini-btn">Back to Edit</button></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+          <h4 style="font-size: 24px;">CareerCraft</h4>
+        </div>
+        <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@careercraft.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Floating AI FAB -->
+  <div class="ai-fab" id="aiFab" title="Open AI tools" aria-label="AI tools">
+    <div class="dot">AI</div>
+  </div>
+
+  <!-- AI Drawer -->
+  <div class="ai-drawer" id="aiDrawer" role="dialog" aria-hidden="true" aria-label="AI resume assistant">
+    <div class="ai-header">
+      <h4>AI Resume Assistant</h4>
+      <div>
+        <button id="closeDrawer" title="Close" style="background:transparent;border:0;cursor:pointer;font-weight:700;color:#64748b">✕</button>
+      </div>
+    </div>
+
+    <div style="margin-top:10px;" class="muted">Use these tools to auto-create or enhance parts of your resume using the information you saved.</div>
+
+    <div class="ai-actions">
+      <button id="genSummaryBtn">Generate Profile Summary</button>
+      <button id="improveBulletsBtn">Improve Experience Bullets</button>
+      <button id="suggestSkillsBtn">Suggest Skills (from experience & projects)</button>
+      <button id="autoTitleBtn">Auto-Fill Job Title</button>
+      <button id="resetBtn" style="background:#fff2f0;color:#b42318;">Reset AI changes (restore saved data)</button>
+    </div>
+
+    <div class="ai-output" id="aiOutput" aria-live="polite">No AI action yet — click a tool above.</div>
+
+    <div class="ai-footer">
+      <div class="muted">Outputs are generated locally (heuristics)</div>
+      <div style="display:flex;gap:8px">
+        <button id="applyBtn" style="background:#0056b3;color:white;border:0;padding:8px 12px;border-radius:8px;cursor:pointer">Apply to Resume</button>
+        <button id="copyBtn" style="background:transparent;border:1px solid #dfefff;padding:8px 12px;border-radius:8px;cursor:pointer">Copy</button>
+      </div>
+    </div>
+
+    <div class="muted" style="font-size:11px;margin-top:18px;text-align:right;">
+      Generated using CareerCraft Resume Builder
+    </div>
+  </div>
+
+  <script>
+    /* small helpers */
+    function escapeHtml(s){ if (s===undefined||s===null) return ''; return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+    function getLS(k,f=null){ try{ const v=localStorage.getItem(k); return v?JSON.parse(v):f;}catch(e){return f;} }
+    function setLS(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+
+    /* load templates (same as earlier) */
+    function loadPersonalInfoTemplate(){
+      const p = getLS('personalInfo', {});
+      const full = (p && p.name) ? String(p.name).toUpperCase().trim() : '';
+      if (full) {
+        const parts = full.split(/\s+/);
+        const first = parts.shift() || '';
+        const last = parts.join(' ') || '';
+        document.getElementById('nameDisplay').innerHTML = `${escapeHtml(first)} <span class="light">${escapeHtml(last)}</span>`;
+      } else { document.getElementById('nameDisplay').textContent = 'YOUR NAME'; }
+      document.getElementById('titleDisplay').textContent = ((p && p.title) ? String(p.title) : 'YOUR TITLE').toUpperCase();
+      document.getElementById('profileDisplay').textContent = (p && p.summary) ? p.summary : 'Add a professional summary on Personal Info or use AI -> Generate Profile Summary.';
+      const contactEl = document.getElementById('contactDisplay');
+      let contactHtml='';
+      if (p && p.phone) contactHtml += `<div class="contact-item">${escapeHtml(p.phone)}</div>`;
+      if (p && p.email) contactHtml += `<div class="contact-item">${escapeHtml(p.email)}</div>`;
+      if (p && p.address) contactHtml += `<div class="contact-item">${escapeHtml(p.address)}</div>`;
+      if (p && p.linkedin) contactHtml += `<div class="contact-item">${escapeHtml(p.linkedin)}</div>`;
+      contactEl.innerHTML = contactHtml || '<div class="muted">No contact information saved.</div>';
+    }
+    function loadEducationTemplate(){
+      const e = getLS('educationInfo', null);
+      const container = document.getElementById('educationDisplay');
+      if (!e) { container.innerHTML = '<div class="edu-item"><div class="school muted">No education saved.</div></div>'; return; }
+      const arr = Array.isArray(e) ? e : [e]; let html='';
+      arr.forEach(item=>{
+        html += `<div class="edu-item">${item && item.year?`<div class="period">${escapeHtml(item.year)}</div>`:''}${item && item.institute?`<div class="school">${escapeHtml(String(item.institute).toUpperCase())}</div>`:''}${item && item.degree?`<div class="position">${escapeHtml(item.degree)}</div>`:''}${item && item.percentage?`<div class="position">Result: ${escapeHtml(item.percentage)}</div>`:''}</div>`;
+      });
+      container.innerHTML = html || '<div class="muted">No education saved.</div>';
+    }
+    function loadExperienceTemplate(){
+      const ex = getLS('expInfo', null); const container = document.getElementById('experienceDisplay');
+      if (!ex) { container.innerHTML = '<div class="job"><div class="company-name muted">No experience saved.</div></div>'; return; }
+      const arr = Array.isArray(ex)?ex:[ex]; let html='';
+      arr.forEach(job=>{
+        const company = escapeHtml(job.company || job.companyName || 'Company');
+        const position = escapeHtml(job.role || job.position || job.title || '');
+        const duration = escapeHtml(job.duration || job.period || '');
+        const rawDesc = job.responsibilities || job.description || job.summary || '';
+        let bullets = '';
+        if (rawDesc && String(rawDesc).trim()) {
+          const lines = String(rawDesc).split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+          bullets = '<ul>' + lines.map(l => `<li>${escapeHtml(l)}</li>`).join('') + '</ul>';
+        } else { bullets = '<ul><li>Describe your responsibilities here.</li></ul>'; }
+        html += `<div class="job"><div class="company-name">${company}</div><div class="position">${position}</div><div class="job-period">${duration}</div>${bullets}</div>`;
+      });
+      container.innerHTML = html;
+    }
+    function loadSkillsTemplate(){
+    const skills = getLS('skillsInfo', []);
+    const container = document.getElementById('skillsDisplay');
+
+    if (!Array.isArray(skills) || skills.length === 0) {
+    container.innerHTML = '<div class="skill-item muted">No skills added.</div>';
+    return;
+   }
+
+   container.innerHTML = skills
+    .map(s => `<span class="skill-chip">${escapeHtml(s)}</span>`)
+    .join('');
+  }
+
+    function loadProjectsTemplate(){
+    const projects = getLS('projectsInfo', []);
+    const container = document.getElementById('projectsDisplay');
+
+    if (!Array.isArray(projects) || projects.length === 0){
+     container.innerHTML =
+      '<div class="project-box"><div class="muted">No projects added.</div></div>';
+    return;
+  }
+
+    container.innerHTML = projects.map(p => `
+    <div class="project-card">
+      <h4>${escapeHtml(p.title || 'Untitled Project')}</h4>
+      <p>${escapeHtml(p.desc || '')}</p>
+      <div class="project-tech">
+        <strong>Tech:</strong> ${escapeHtml(p.tech || '')}
+      </div>
+    </div>
+  `).join('');
+  }
+
+    function loadAll(){ loadPersonalInfoTemplate(); loadEducationTemplate(); loadExperienceTemplate(); loadSkillsTemplate(); loadProjectsTemplate();
+      const updated =
+        localStorage.getItem('skillsUpdatedAt') ||
+        localStorage.getItem('projectsUpdatedAt') ||
+        localStorage.getItem('personalUpdatedAt');
+
+    if (updated) {
+    document.getElementById('resumeUpdatedAt').textContent =
+    new Date(updated).toDateString();
+    }
+   }
+
+    /* small AI heuristics (unchanged) */
+    function extractKeywords(text, topN=8){ if (!text) return []; text=String(text).toLowerCase(); const stop=new Set(['and','the','with','a','to','in','for','of','on','from','by','using','use','was','is','that','this','as','at','be']); const words=text.replace(/[^\w\s]/g,' ').split(/\s+/).filter(Boolean); const freq={}; words.forEach(w=>{ if (!stop.has(w)&&w.length>2) freq[w]=(freq[w]||0)+1 }); const sorted=Object.keys(freq).sort((a,b)=>freq[b]-freq[a]); return sorted.slice(0,topN); }
+    function generateSummary(){ const p=getLS('personalInfo',{}); const ex=getLS('expInfo',null); const projects=getLS('projectsInfo',[]); const skills=getLS('skillsInfo',[]); const name=(p&&p.name)?String((p.name||'').split(' ')[0]):''; let pool=[]; if (p&&p.summary) pool.push(p.summary); if (Array.isArray(ex)) ex.forEach(j=>{ if (j.responsibilities) pool.push(j.responsibilities); if (j.role) pool.push(j.role); }); else if (ex && typeof ex === 'object'){ if (ex.responsibilities) pool.push(ex.responsibilities); if (ex.role) pool.push(ex.role); } projects.forEach(pr=>{ if (pr.desc) pool.push(pr.desc); if (pr.tech) pool.push(pr.tech); }); pool = pool.join(' ').trim(); const keys=extractKeywords(pool,6); const skillStr=(Array.isArray(skills)&&skills.length)?skills.slice(0,6).join(', '):keys.slice(0,6).join(', '); let summary=''; if (p && p.summary && p.summary.length>60){ summary=p.summary.trim(); if (summary.length>260) summary=summary.slice(0,256)+'...'; } else if (pool.length) { summary=`${name?name+' is a ':''}${keys.length?keys[0]+' professional':'driven professional'} with experience in ${skillStr}. Skilled at ${keys.slice(1,4).join(', ')}. Delivered projects involving ${keys.slice(4).join(', ')} and consistently focused on practical, measurable outcomes.`; } else if (p&&p.title) { summary=`${p.title} with practical experience and a motivation to deliver impactful results.`; } else { summary='Dedicated professional with relevant skills and a strong desire to learn and contribute effectively.'; } return summary; }
+    function improveBullets(){ const ex=getLS('expInfo',null); if (!ex) return 'No experience data found to improve.'; const arr=Array.isArray(ex)?ex:[ex]; let out=''; arr.forEach(job=>{ out += `• ${job.company||job.companyName||'Company'} (${job.role||job.position||''})\n`; const raw=job.responsibilities||job.description||job.summary||''; if (!raw||!String(raw).trim()){ out += '  - Add short bullet points describing your impact and results (tools, outcomes, metrics).\n\n'; return; } const parts=String(raw).split(/[.\n;]+/).map(s=>s.trim()).filter(Boolean); if (parts.length<=1){ const commas=String(raw).split(',').map(s=>s.trim()).filter(Boolean); commas.forEach(p=>{ if(p) out += `  - ${p}\n`; }); } else { parts.forEach(p=>{ const cleaned=p.replace(/^[•\-\]\s]+/,'').trim(); if (cleaned) out += `  - ${cleaned}.\n`; }); } out += '\n'; }); return out.trim(); }
+    function suggestSkills(){ const ex=getLS('expInfo',null); const projects=getLS('projectsInfo',[]); let pool=''; if (Array.isArray(ex)) ex.forEach(j=>{ if (j.responsibilities) pool+=' '+j.responsibilities; if (j.role) pool+=' '+j.role; }); else if (ex && typeof ex === 'object'){ if (ex.responsibilities) pool+=' '+ex.responsibilities; if (ex.role) pool+=' '+ex.role; } projects.forEach(p=>{ if (p.desc) pool+=' '+p.desc; if (p.tech) pool+=' '+p.tech; }); const known=['javascript','react','html','css','python','flask','django','sql','mysql','postgres','node','express','java','spring','c++','c#','git','docker','kubernetes','aws','azure','tensorflow','pandas','numpy','excel','power bi','tableau','figma','photoshop','communication','leadership','project management']; const found=new Set(); const poolLower=pool.toLowerCase(); known.forEach(k=>{ if (poolLower.includes(k)) found.add(k); }); extractKeywords(pool,10).forEach(k=>{ if (k.length>2) found.add(k); }); const suggested = Array.from(found).slice(0,12).map(s=>{ if (s==='js'||s==='javascript') return 'JavaScript'; if (s==='react') return 'React'; if (s==='html') return 'HTML'; if (s==='css') return 'CSS'; if (s==='python') return 'Python'; if (s==='flask') return 'Flask'; if (s==='django') return 'Django'; if (s==='sql') return 'SQL'; if (s==='mysql') return 'MySQL'; if (s==='aws') return 'AWS'; if (s==='tensorflow') return 'TensorFlow'; if (s==='pandas') return 'Pandas'; if (s==='numpy') return 'NumPy'; if (s==='excel') return 'Excel'; if (s==='power bi') return 'Power BI'; return (s[0].toUpperCase()+s.slice(1)); }); return suggested.length?suggested:['Communication','Teamwork','Problem Solving']; }
+    function autoTitle(){ const p=getLS('personalInfo',{}); const ex=getLS('expInfo',null); const skills=getLS('skillsInfo',[]); if (p&&p.title&&p.title.trim().length) return p.title; if (Array.isArray(ex)&&ex.length&&ex[0].role) return ex[0].role; if (ex&&ex.role) return ex.role; const s=(Array.isArray(skills)&&skills.length)?skills.map(x=>String(x).toLowerCase()):[]; if (s.some(x=>x.includes('frontend')||x.includes('react')||x.includes('javascript'))) return 'Frontend Developer'; if (s.some(x=>x.includes('python')||x.includes('django')||x.includes('flask'))) return 'Python Developer'; if (s.some(x=>x.includes('data')||x.includes('excel')||x.includes('power bi'))) return 'Data Analyst'; if (s.some(x=>x.includes('machine')||x.includes('tensorflow')||x.includes('model'))) return 'Machine Learning Engineer'; if (s.some(x=>x.includes('java')||x.includes('spring'))) return 'Java Developer'; return 'Professional'; }
+
+    /* AI Drawer wiring (same as before) */
+    const aiFab = document.getElementById('aiFab');
+    const aiDrawer = document.getElementById('aiDrawer');
+    const closeDrawer = document.getElementById('closeDrawer');
+    const aiOutput = document.getElementById('aiOutput');
+    const applyBtn = document.getElementById('applyBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
+    aiFab.addEventListener('click', () => {
+      const vis = aiDrawer.classList.toggle('visible');
+      aiDrawer.setAttribute('aria-hidden', !vis);
+      if (vis) aiOutput.textContent = 'Choose an AI tool above to generate output...';
+    });
+    closeDrawer.addEventListener('click', () => { aiDrawer.classList.remove('visible'); aiDrawer.setAttribute('aria-hidden','true'); });
+
+    document.getElementById('genSummaryBtn').addEventListener('click', () => { aiOutput.textContent = 'Generating summary…'; setTimeout(()=>{ const summary = generateSummary(); aiOutput.textContent = summary; aiOutput.dataset.type = 'summary'; },300); });
+    document.getElementById('improveBulletsBtn').addEventListener('click', () => { aiOutput.textContent = 'Improving bullets…'; setTimeout(()=>{ const improved = improveBullets(); aiOutput.textContent = improved; aiOutput.dataset.type = 'bullets'; },300); });
+    document.getElementById('suggestSkillsBtn').addEventListener('click', () => { aiOutput.textContent = 'Suggesting skills…'; setTimeout(()=>{ const suggested = suggestSkills(); aiOutput.textContent = suggested.join(', '); aiOutput.dataset.type = 'skills'; aiOutput.dataset.skills = JSON.stringify(suggested); },250); });
+    document.getElementById('autoTitleBtn').addEventListener('click', () => { aiOutput.textContent = 'Detecting suitable job title…'; setTimeout(()=>{ const title = autoTitle(); aiOutput.textContent = title; aiOutput.dataset.type = 'title'; },200); });
+
+    applyBtn.addEventListener('click', () => {
+      const type = aiOutput.dataset.type || '';
+      if (!type) { alert('No AI output to apply. Click a tool first.'); return; }
+      if (type === 'summary') {
+        const summary = aiOutput.textContent.trim();
+        const p = getLS('personalInfo', {}) || {};
+        p.summary = summary; setLS('personalInfo', p); loadPersonalInfoTemplate(); alert('Profile summary applied to resume and saved to Personal Info.');
+      } else if (type === 'bullets') {
+        const improved = aiOutput.textContent.trim();
+        let ex = getLS('expInfo', null);
+        if (!ex) { alert('No experience to apply bullets to. Add experience first.'); return; }
+        if (Array.isArray(ex)) ex[0].responsibilities = improved; else ex.responsibilities = improved;
+        setLS('expInfo', ex); loadExperienceTemplate(); alert('Improved bullets applied to the first experience and saved.');
+      } else if (type === 'skills') {
+        let suggested = []; try { suggested = JSON.parse(aiOutput.dataset.skills || '[]'); } catch(e) { suggested = []; }
+        if (!Array.isArray(suggested) || !suggested.length) { alert('No skills suggested.'); return; }
+        const current = getLS('skillsInfo', []); const merged = Array.from(new Set([...(current||[]), ...suggested])); setLS('skillsInfo', merged); loadSkillsTemplate(); alert('Suggested skills added to Skills and saved.');
+      } else if (type === 'title') {
+        const title = aiOutput.textContent.trim(); const p = getLS('personalInfo', {}) || {}; p.title = title; setLS('personalInfo', p); loadPersonalInfoTemplate(); alert('Job title auto-filled and saved in Personal Info.');
+      } else { alert('Unknown AI output type.'); }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const txt = aiOutput.textContent || ''; if (!txt) return alert('Nothing to copy.');
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(txt).then(()=> alert('Copied to clipboard.'), ()=> alert('Unable to copy.')); } else { const ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); alert('Copied to clipboard.'); }catch(e){ alert('Unable to copy.'); } ta.remove(); }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => { if (!confirm('Restore resume from saved local data? (This will not undo manual edits you made earlier.)')) return; loadAll(); aiOutput.textContent='Restored from saved data.'; delete aiOutput.dataset.type; delete aiOutput.dataset.skills; });
+
+    document.addEventListener('click', (e) => {
+      const path = e.composedPath ? e.composedPath() : (e.path || []);
+      const isInside = path && path.some(el => el === aiDrawer || el === aiFab);
+      if (!isInside && aiDrawer.classList.contains('visible')) aiDrawer.classList.remove('visible');
+    });
+
+    document.addEventListener('DOMContentLoaded', loadAll);
+
+    /* -------------------------------
+       printSinglePageA4()
+       Prints resume fitted to one A4 page
+       ------------------------------- */
+
+    function printSinglePageA4() {
+      const resume = document.getElementById('resumeCard');
+      if (!resume) return alert('Resume not found.');
+
+      // Build minimal HTML for print window
+      // include inline <style> so we control layout precisely in print window
+      let styleTags = '';
+      // include current style tags (inline) - we want consistent look
+      document.querySelectorAll('style').forEach(n => styleTags += n.outerHTML);
+      // create the print window
+      const printWin = window.open('', '_blank', 'toolbar=0,location=0,menubar=0');
+      if (!printWin) { alert('Unable to open print window (popup blocked). Please allow popups or use browser print.'); return; }
+
+      const html = `
+        <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Resume</title>
+            ${styleTags}
+            <style>
+              /* force A4 canvas sizing for measurement and printing */
+              html,body { margin:0; padding:0; height:297mm; width:210mm; }
+              body { display:flex; justify-content:center; align-items:flex-start; background:#fff; -webkit-print-color-adjust:exact; }
+              .print-container { width: 210mm; height: 297mm; padding: 12mm; box-sizing: border-box; overflow: hidden; }
+              /* make sure resume looks like the original */
+              #resumeCard { width:100%; height:auto; transform-origin: top left; box-shadow:none !important; border-radius:0 !important; }
+              /* avoid page-break issues if browser still paginates */
+              .project-box, .job { page-break-inside: avoid; }
+            </style>
+          </head>
+          <body>
+            <div class="print-container" id="printContainer">
+              ${resume.outerHTML}
+            </div>
+          </body>
+        </html>
+      `;
+      printWin.document.open();
+      printWin.document.write(html);
+      printWin.document.close();
+
+      // After content loads, compute scale to fit one A4 page (printContainer height)
+      printWin.onload = function() {
+        try {
+          const doc = printWin.document;
+          const container = doc.getElementById('printContainer');
+          const printedResume = doc.getElementById('resumeCard');
+
+          // function to convert mm to px in this window
+          const mmToPx = (mm) => {
+            // create an element for mm measurement
+            const el = doc.createElement('div');
+            el.style.width = '1mm';
+            doc.body.appendChild(el);
+            const pxPerMm = el.getBoundingClientRect().width;
+            el.remove();
+            return mm * pxPerMm;
+          };
+
+          // page inner height = 297mm - top&bottom padding (12mm each)
+          const pageHeightPx = mmToPx(297) - mmToPx(12) * 2;
+          const pageWidthPx = mmToPx(210) - mmToPx(12) * 2;
+
+          // measure content natural size
+          // ensure printedResume uses natural layout
+          printedResume.style.width = pageWidthPx + 'px';
+          printedResume.style.maxWidth = 'none';
+          printedResume.style.boxSizing = 'border-box';
+          printedResume.style.padding = printedResume.style.padding || '';
+
+          // small delay to allow webfonts and layout to settle
+          setTimeout(() => {
+            const contentHeight = printedResume.scrollHeight;
+            const contentWidth = printedResume.scrollWidth;
+
+            // compute scale factor for both width and height, take minimum to fit
+            let scaleH = pageHeightPx / contentHeight;
+            let scaleW = pageWidthPx / contentWidth;
+            let scale = Math.min(scaleH, scaleW, 1);
+
+            // apply small buffer so content doesn't touch edges
+            scale = scale * 0.98;
+
+            printedResume.style.transform = `scale(${scale})`;
+            // To center vertically if shorter after scaling
+            const usedHeight = contentHeight * scale;
+            const topOffset = Math.max(0, (pageHeightPx - usedHeight) / 2);
+            container.style.display = 'flex';
+            container.style.alignItems = 'flex-start';
+            container.style.justifyContent = 'center';
+            printedResume.style.marginTop = topOffset + 'px';
+
+            // give it a moment then print
+            setTimeout(() => {
+              printWin.focus();
+              printWin.print();
+              // optionally close window after printing:
+              // printWin.close();
+            }, 300);
+          }, 250);
+        } catch (err) {
+          // fallback: simply call print
+          printWin.focus();
+          printWin.print();
+        }
+      };
+    }
+  </script>
+</body>
+</html>

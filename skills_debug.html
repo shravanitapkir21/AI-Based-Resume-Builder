@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareerCraft | Skills</title>
+  <link rel="stylesheet" href="personal_info.css">
+  <style>
+    :root{
+      --accent:#007bff;
+      --accent-2:#0056b3;
+      --muted:#1a1a2e;
+    }
+    body { font-family: "Poppins", sans-serif; margin:0; background:linear-gradient(90deg,#e6f4ff 0%, #f6fbff 100%); color:#112; }
+
+    /* rest of page */
+    .container { max-width:1000px; margin:40px auto; padding:48px; background:white; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.08); }
+    h1 { color:var(--accent-2); margin:0 0 16px 0; font-size:28px; font-weight:700; }
+    p { color:#f2f3f6; line-height:1.6; font-size:15px; }
+    label { font-weight:600; display:block; margin-top:20px; color:var(--accent-2); font-size:14px; }
+    select, input[type=text] { padding:12px; width:100%; border-radius:10px; border:1px solid #d7e7ff; margin-top:8px; font-size:15px; font-family:"Poppins", sans-serif; transition:border-color .2s ease, box-shadow .2s ease; }
+    select:focus, input[type=text]:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,123,255,0.1); }
+    .chips { margin-top:16px; min-height:50px; }
+    .chip { display:inline-block; margin:8px 6px; padding:10px 14px; border-radius:20px; background:#e7f1ff; color:var(--accent-2); cursor:pointer; user-select:none; font-weight:600; font-size:14px; transition:all .2s ease; }
+    .chip:hover { background:var(--accent); color:white; transform:translateY(-2px); }
+    .chip.selected { background:var(--accent-2); color:#fff; }
+    .status { margin-top:14px; color:#64748b; font-size:14px; }
+    .actions { margin-top:24px; display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { padding:12px 20px; border-radius:10px; border:0; background:var(--accent-2); color:white; cursor:pointer; font-weight:600; font-size:14px; transition:transform .15s ease, opacity .15s ease, box-shadow .15s ease; }
+    .btn:hover { transform:translateY(-2px); opacity:0.95; box-shadow:0 8px 20px rgba(0,86,179,0.2); }
+    .btn.secondary { background:#eef6ff; color:var(--accent-2); border:1px solid #d7e7ff; }
+    .btn-action { padding:10px 14px; border-radius:8px; border:1px solid #d7e7ff; background:transparent; cursor:pointer; font-weight:600; font-size:13px; transition:all .2s ease; }
+    .btn-action:hover { background:rgba(0,123,255,0.06); color:var(--accent-2); }
+    .helper { margin-top:12px; color:var(--accent); opacity:0; transition:opacity .2s; font-size:14px; }
+
+    .preview-box { background:#eef6ff; padding:24px; border-radius:14px; margin-top:28px; border:1px solid #d7e7ff; }
+    .preview-box h3 { margin:0 0 16px 0; color:var(--accent-2); display:flex; justify-content:space-between; align-items:center; gap:12px; font-size:16px; }
+    .preview-field { margin:12px 0; font-size:15px; display:flex; justify-content:space-between; align-items:center; gap:12px; color:#334155; font-weight:500; }
+    textarea.edit-area { width:100%; min-height:100px; margin-top:12px; padding:12px; border-radius:10px; border:1px solid #d7e7ff; font-size:14px; font-family:"Poppins", sans-serif; resize:vertical; transition:border-color .2s ease, box-shadow .2s ease; }
+    textarea.edit-area:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,123,255,0.1); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+  <img src="images/logo.png" alt="CareerCraft Logo">
+  <span>CareerCraft</span>
+</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="personal_info.html">Personal Info</a>
+      <a href="education.html">Education</a>
+      <a href="experience.html">Experience</a>
+      <a href="expertise.html">Expertise & Projects</a>
+      <a href="skills_debug.html" class="active">Skills</a>
+      <a href="preview.html" class="btn-next-top">Next</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <div class="container" id="main">
+    <h1>Skills</h1>
+    <p style="color:#64748b; font-size:14px; margin-bottom:10px;">
+     Select skills relevant to your target job role.
+    </p>
+
+
+    <label for="domain">Domain</label>
+    <select id="domain">
+      <option value="">-- choose domain --</option>
+      <option value="frontend">Frontend</option>
+      <option value="python">Python</option>
+<option value="ai_ml">AI / ML Learning Engineer</option>
+<option value="civil">Civil Engineer</option>
+<option value="electrical">Electrical Engineer</option>
+<option value="mechanical">Mechanical Engineer</option>
+<option value="electronics">Electronics Engineer</option>
+<option value="network">Network Engineer</option>
+<option value="softwareTester">Software Tester / QA Engineer</option>
+<option value="dba">Database Administrator</option>
+<option value="cyberSecurity">Cyber Security Engineer</option>
+<option value="fullstack">Full-Stack Developer</option>
+<option value="androidDev">Android Developer</option>
+<option value="iosDev">iOS Developer</option>
+<option value="devops">DevOps Engineer</option>
+<option value="cloud">Cloud Engineer</option>
+<option value="backend">Backend Developer</option>
+<option value="gameDev">Game Developer</option>
+<option value="uiux">UI/UX Designer</option>
+<option value="businessAnalyst">Business Analyst</option>
+<option value="dataScientist">Data Scientist</option>
+<option value="dataEngineer">Data Engineer</option>
+<option value="promptEngineer">Prompt Engineer</option>
+<option value="blockchain">Blockchain Developer</option>
+<option value="cloudSecurity">Cloud Security Engineer</option>
+<option value="sysAdmin">System Administrator</option>
+<option value="itSupport">IT Support Engineer</option>
+<option value="digitalMarketing">Digital Marketer</option>
+<option value="graphicDesign">Graphic Designer</option>
+<option value="videoEditing">Video Editor</option>
+<option value="hr">HR Executive / Recruiter</option>
+
+    </select>
+
+    <div class="status" id="status">Status: idle</div>
+
+    <h3 style="margin-top:18px">AI Suggested Skills</h3>
+    <div id="suggested" class="chips" aria-live="polite"></div>
+
+    <h3 style="margin-top:18px; color:#0056b3;">
+      ✔ Final Skills (Selected for Resume)
+    </h3>
+
+    <div id="final" class="chips" aria-live="polite"></div>
+
+    <div class="actions">
+      <button id="refresh" class="btn secondary">Refresh</button>
+      <button id="fillSaved" class="btn secondary">Fill Saved</button>
+      <button id="save" class="btn">Save</button>
+      <button id="clearAll" class="btn-action">Clear Saved</button>
+      <button id="editCsv" class="btn-action">Edit</button>
+    </div>
+
+    <p class="helper" id="msg">Saved!</p>
+
+    <div class="preview-box" id="previewBox" aria-live="polite">
+      <h3>
+        Preview — Skills
+        <span class="preview-actions">
+          <button class="btn-action" id="previewEdit">Edit</button>
+          <button class="btn-action" id="previewClear">Clear</button>
+        </span>
+      </h3>
+
+      <div class="preview-field">
+        <strong>Key Skills</strong>
+        <span id="prevSkills">—</span>
+      </div>
+      
+      <div class="preview-field">
+      <strong>Last Updated</strong>
+      <span id="lastUpdated">—</span>
+      </div>
+
+      <div id="editorArea" style="display:none; margin-top:12px;">
+        <label for="editText">Edit skills as comma-separated values</label>
+        <textarea id="editText" class="edit-area" placeholder="e.g. HTML, CSS, JavaScript"></textarea>
+
+        <div style="margin-top:8px; display:flex; gap:8px;">
+          <button id="applyEdit" class="btn">Apply</button>
+          <button id="cancelEdit" class="btn secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  
+    const domain = document.getElementById('domain');
+    const suggested = document.getElementById('suggested');
+    const final = document.getElementById('final');
+    const status = document.getElementById('status');
+    const save = document.getElementById('save');
+    const refresh = document.getElementById('refresh');
+    const fillSavedBtn = document.getElementById('fillSaved');
+    const clearAll = document.getElementById('clearAll');
+    const editCsv = document.getElementById('editCsv');
+    const msg = document.getElementById('msg');
+  
+    const prevSkillsEl = document.getElementById('prevSkills');
+    const lastUpdatedEl = document.getElementById('lastUpdated');
+    const previewEdit = document.getElementById('previewEdit');
+    const previewClear = document.getElementById('previewClear');
+    const editorArea = document.getElementById('editorArea');
+    const editText = document.getElementById('editText');
+    const applyEdit = document.getElementById('applyEdit');
+    const cancelEdit = document.getElementById('cancelEdit');
+  
+    /* -------------------------
+       FIXED & CLEAN SKILL SETS
+    -----------------------------*/
+    const skillSets = {
+      frontend: ['HTML','CSS','JavaScript','React','Responsive Design'],
+      python: ['Python','Django','Flask','Pandas','NumPy'],
+      ai_ml: ['Python','Machine Learning','Deep Learning','TensorFlow','NumPy','Data Preprocessing'],
+      civil: ['AutoCAD','Revit','STAAD Pro','Project Management','Structural Analysis','Quantity Estimation'],
+      electrical: ['MATLAB','Circuit Design','Power Systems','PCB Design','Control Systems','IoT Basics'],
+      mechanical: ['AutoCAD','SolidWorks','ANSYS','Thermodynamics','Manufacturing Processes','CNC Programming'],
+      electronics: ['Arduino','Embedded Systems','Microcontrollers','Circuit Analysis','IoT','PCB Design'],
+      network: ['Networking Basics','CCNA','Routing & Switching','Firewalls','Network Security','Troubleshooting'],
+      softwareTester: ['Manual Testing','Automation Testing','Selenium','Test Case Design','Bug Tracking Tools'],
+      dba: ['SQL','MySQL','Oracle','Database Design','Backup & Recovery','Query Optimization'],
+      cyberSecurity: ['Networking','Linux','Firewalls','Ethical Hacking','Penetration Testing','Cryptography'],
+      fullstack: ['JavaScript','Node.js','Express.js','React','MongoDB','REST APIs','Git'],
+      androidDev: ['Java','Kotlin','Android Studio','XML Layouts','Firebase','SQLite','UI/UX Basics'],
+      iosDev: ['Swift','Xcode','SwiftUI','Core Data','iOS Frameworks','API Integration'],
+      devops: ['Linux','Docker','Kubernetes','CI/CD','Jenkins','AWS','Shell Scripting','Monitoring Tools'],
+      cloud: ['AWS','Azure','Google Cloud','Virtual Machines','IAM','Cloud Networking','Serverless'],
+      backend: ['Node.js','Python','Java','REST APIs','Databases','Authentication','Caching'],
+      gameDev: ['Unity','C#','Game Physics','2D/3D Design','Animation','Shader Programming'],
+      uiux: ['Figma','Wireframing','Prototyping','User Research','Visual Design','Interaction Design'],
+      businessAnalyst: ['Requirement Gathering','Data Analysis','SQL','Excel','Documentation','UML Diagrams'],
+      dataScientist: ['Python','Machine Learning','Pandas','NumPy','Data Visualization','Model Deployment'],
+      dataEngineer: ['ETL Pipelines','SQL','Python','Spark','Data Warehousing','Airflow','Big Data Tools'],
+      promptEngineer: ['NLP','LLMs','Python','Prompt Design','Model Evaluation','RAG Basics'],
+      blockchain: ['Solidity','Ethereum','Smart Contracts','Web3.js','Cryptography','DApps'],
+      cloudSecurity: ['Cloud IAM','Firewalls','SIEM','Encryption','Vulnerability Assessment','Incident Response'],
+      sysAdmin: ['Linux','Windows Server','Virtualization','Networking','User Management','Bash Scripting'],
+      itSupport: ['Troubleshooting','Networking Basics','OS Installation','Hardware Support','Ticketing Tools'],
+      digitalMarketing: ['SEO','Social Media Marketing','Google Ads','Analytics','Content Marketing','Email Marketing'],
+      graphicDesign: ['Photoshop','Illustrator','Canva','Typography','Layout Design','Branding'],
+      videoEditing: ['Premiere Pro','After Effects','Storyboarding','Audio Editing','Color Grading'],
+      hr: ['Communication','Interviewing','HR Tools','Payroll Basics','Documentation']
+    };
+  
+    let suggestedSkills = [];
+    let finalSkills = JSON.parse(localStorage.getItem('skillsInfo') || '[]');
+  
+
+    function formatUpdatedTime(dateStr) {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    const hrs = Math.floor(mins / 60);
+    const days = Math.floor(hrs / 24);
+
+    if (mins < 1) return 'Updated just now';
+    if (mins < 60) return `Updated ${mins} min ago`;
+    if (hrs < 24) return `Updated ${hrs} hrs ago`;
+    if (days < 7) return `Updated ${days} days ago`;
+
+    return 'Updated ' + new Date(dateStr).toDateString();
+  }
+
+    function render(container, arr) {
+      container.innerHTML = '';
+      arr.forEach(s => {
+        const d = document.createElement('div');
+        d.className = 'chip' + (finalSkills.includes(s) ? ' selected' : '');
+        d.textContent = s;
+        d.onclick = () => toggleFinalSkill(s);
+        container.appendChild(d);
+      });
+    }
+  
+    function renderFinalList() {
+      final.innerHTML = '';
+      finalSkills.forEach(s => {
+        const d = document.createElement('div');
+        d.className = 'chip selected';
+        d.textContent = s;
+        d.onclick = () => toggleFinalSkill(s);
+        final.appendChild(d);
+      });
+      renderPreview();
+    }
+  
+    function toggleFinalSkill(skill) {
+      if (finalSkills.includes(skill)) {
+        finalSkills = finalSkills.filter(x => x !== skill);
+      } else {
+        finalSkills.push(skill);
+      }
+      localStorage.setItem('skillsInfo', JSON.stringify(finalSkills));
+
+      const now = new Date();
+      localStorage.setItem('skillsUpdatedAt', now.toISOString());
+      lastUpdatedEl.textContent = now.toDateString();
+
+      render(suggested, suggestedSkills);
+      renderFinalList();
+    }
+  
+    function renderPreview() {
+      if (finalSkills.length) {
+      prevSkillsEl.textContent = finalSkills.join(', ');
+      } else {
+      prevSkillsEl.textContent = 'No skills added yet';
+      }
+
+    }
+  
+    domain.onchange = () => {
+
+      localStorage.setItem('lastDomain', domain.value);
+
+      finalSkills = JSON.parse(
+      localStorage.getItem(`skills_${domain.value}`) || '[]'
+     );
+
+    renderFinalList();
+
+      const v = domain.value;
+      if (!v) {
+        suggestedSkills = [];
+        status.textContent = 'Status: choose a domain';
+        render(suggested, suggestedSkills);
+        return;
+      }
+      status.textContent = 'Status: generating...';
+      setTimeout(() => {
+        suggestedSkills = (skillSets[v] || []).slice();
+        render(suggested, suggestedSkills);
+        renderFinalList();
+        status.textContent = 'Status: ready';
+      }, 300);
+    };
+  
+    refresh.onclick = () => {
+      if (!domain.value) return alert('Select a domain first');
+      domain.onchange();
+    };
+  
+    save.onclick = () => {
+      localStorage.setItem(`skills_${domain.value}`,JSON.stringify(finalSkills));
+
+      let allSkills = JSON.parse(localStorage.getItem('allSkills') || '{}');
+      allSkills[domain.value] = finalSkills;
+      localStorage.setItem('allSkills', JSON.stringify(allSkills));
+
+      const now = new Date();
+      localStorage.setItem('skillsUpdatedAt', now.toISOString());
+      lastUpdatedEl.textContent = now.toDateString();
+      msg.style.opacity = 1;
+      setTimeout(()=> msg.style.opacity = 0, 1200);
+      renderPreview();
+    };
+  
+    fillSavedBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('skillsInfo') || '[]');
+      if (!saved.length) { alert('No saved skills found.'); return; }
+      finalSkills = saved.slice();
+      renderFinalList();
+      render(suggested, suggestedSkills);
+    };
+  
+    clearAll.onclick = () => {
+      if (!confirm('Clear all saved skills?')) return;
+      localStorage.removeItem('skillsInfo');
+      finalSkills = [];
+      renderFinalList();
+      render(suggested, suggestedSkills);
+    };
+  
+    editCsv.onclick =
+    previewEdit.onclick = () => {
+      editorArea.style.display = 'block';
+      editText.value = finalSkills.join(', ');
+      editText.focus();
+    };
+  
+    previewClear.onclick = () => clearAll.onclick();
+  
+    applyEdit.onclick = () => {
+      const text = editText.value.trim();
+      finalSkills = text ? text.split(',').map(s => s.trim()).filter(Boolean) : [];
+      localStorage.setItem('skillsInfo', JSON.stringify(finalSkills));
+      editorArea.style.display = 'none';
+      renderFinalList();
+      render(suggested, suggestedSkills);
+      renderPreview();
+    };
+  
+    cancelEdit.onclick = () => editorArea.style.display = 'none';
+  
+    renderFinalList();
+    render(suggested, suggestedSkills);
+    renderPreview();
+
+    const savedTime = localStorage.getItem('skillsUpdatedAt');
+     if (savedTime) {
+    lastUpdatedEl.textContent = formatUpdatedTime(savedTime);
+   }
+
+   const lastDomain = localStorage.getItem('lastDomain');
+   if (lastDomain) {
+   domain.value = lastDomain;
+   domain.onchange();
+  }
+
+  </script>
+  
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+          <h4 style="font-size: 24px;">CareerCraft</h4>
+        </div>
+        <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@careercraft.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

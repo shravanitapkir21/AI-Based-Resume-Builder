@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resume Template 2</title>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:#eef2f6;
+  padding:0;
+}
+
+.wrapper{
+  max-width:1100px;
+  margin:80px auto 40px;
+}
+
+.resume{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  min-height:900px;
+  background:#fff;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  border-radius:10px;
+  overflow:hidden;
+}
+
+/* LEFT */
+.left{
+  background:#0b3c5d;
+  color:#fff;
+  padding:35px;
+}
+
+.name{
+  font-size:26px;
+  font-weight:700;
+}
+
+.job-title{
+  font-size:15px;
+  margin-bottom:25px;
+  opacity:.85;
+}
+
+.section{
+  margin-bottom:30px;
+}
+
+.section h3{
+  font-size:14px;
+  letter-spacing:1px;
+  border-bottom:1px solid rgba(255,255,255,.4);
+  padding-bottom:6px;
+  margin-bottom:10px;
+}
+
+.contact-item,
+.edu-item,
+.skill-item{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.muted{
+  opacity:.7;
+}
+
+/* RIGHT */
+.right{
+  padding:40px;
+}
+
+.section-title{
+  font-weight:600;
+  color:#0b3c5d;
+  font-size:16px;
+  margin-bottom:12px;
+  border-bottom:2px solid #0b3c5d;
+  display:inline-block;
+}
+
+.profile-text{
+  font-size:14px;
+  line-height:1.6;
+  color:#333;
+  margin-bottom:30px;
+}
+
+.job,
+.project-box{
+  margin-bottom:18px;
+}
+
+.company-name{
+  font-weight:600;
+  font-size:15px;
+}
+
+.button-box{
+  text-align:center;
+  margin-top:40px;
+}
+
+.btn{
+  background:#007bff;
+  color:white;
+  padding:14px 36px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  display:inline-block;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* space between icon & text */
+  font-size: 24px;           /* CareerCraft text size */
+  font-weight: 700;
+  color: #007bff;
+}
+
+.logo img {
+  width: 55px;               /* 🔥 increase logo size */
+  height: 50px;
+  object-fit: contain;
+}
+
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+nav ul li a:hover {
+  color: #0056b3;
+}
+.btn-small {
+  background: #007bff;
+  color: white !important;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+.btn-small:hover {
+  background: #0056b3;
+}
+</style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="CareerCraft Logo">
+      <span>CareerCraft</span>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html"><b>Home</b></a></li>
+        <li><a href="templates.html"><b>Templates</b></a></li>
+        <li><a href="contact.html"><b>Contact</b></a></li>
+        <li><a href="personal_info.html" class="btn-small">Create Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<div class="wrapper">
+
+<main class="resume">
+
+<!-- LEFT -->
+<aside class="left">
+  <div class="name">YOUR NAME</div>
+  <div class="job-title">YOUR JOB TITLE</div>
+
+  <section class="section contact">
+    <h3>CONTACT</h3>
+    <div class="contact-item muted">Email, Phone, City</div>
+  </section>
+
+  <section class="section education">
+    <h3>EDUCATION</h3>
+    <div class="edu-item muted">Degree – College Name</div>
+  </section>
+
+  <section class="section skills">
+    <h3>SKILLS</h3>
+    <div class="skill-item muted">HTML, CSS, Java, C++</div>
+  </section>
+</aside>
+
+<!-- RIGHT -->
+<section class="right">
+
+  <div class="right-section">
+    <div class="section-title">PROFILE SUMMARY</div>
+    <p class="profile-text muted">
+      A short professional summary describing skills and career goals.
+    </p>
+  </div>
+
+  <div class="right-section">
+    <div class="section-title">WORK EXPERIENCE</div>
+    <div class="job muted">Internship / Fresher</div>
+  </div>
+
+  <div class="right-section">
+    <div class="section-title">PROJECTS</div>
+    <div class="project-box muted">CareerCraft Resume Builder</div>
+  </div>
+
+</section>
+</main>
+
+<div class="button-box">
+  <a href="personal_info.html" class="btn">Use this template</a>
+</div>
+
+</div>
+
+<!-- Footer -->
+<footer style="background: #062845; color: white; padding: 60px 10% 30px;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 30px;">
+    <div style="width: 250px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+        <h4 style="font-size: 24px;">CareerCraft</h4>
+      </div>
+      <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+    </div>
+    <div style="width: 250px;">
+      <h4>Quick Links</h4>
+      <ul style="list-style: none; padding: 0;">
+        <li><a href="index.html" style="text-decoration: none; color: white; font-size: 14px;">Home</a></li>
+        <li><a href="templates.html" style="text-decoration: none; color: white; font-size: 14px;">Templates</a></li>
+        <li><a href="contact.html" style="text-decoration: none; color: white; font-size: 14px;">Contact</a></li>
+      </ul>
+    </div>
+    <div style="width: 250px;">
+      <h4>Contact</h4>
+      <p style="font-size: 14px;">Email: support@careercraft.com</p>
+      <p style="font-size: 14px;">Phone: +91 98765 43210</p>
+    </div>
+  </div>
+  <p style="text-align: center; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 15px; font-size: 14px;">© 2025 CareerCraft. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

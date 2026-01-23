@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Shravani Tapkir">
+  <meta name="description" content="CareerCraft is a resume builder web app that helps students create ATS-friendly resumes easily.">
+  <meta name="keywords" content="resume builder, ATS resume, student resume, CV builder">
+  <meta property="og:title" content="CareerCraft | Resume Builder">
+  <meta property="og:image" content="images/logo.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareerCraft | Personal Information</title>
+  <link rel="stylesheet" href="personal_info.css">
+  <style>
+    /* Added styles for preview card + actions */
+    .preview-box {
+      background:#eef6ff;
+      padding:18px;
+      border-radius:12px;
+      margin-top:24px;
+    }
+    .preview-box h3 {
+      margin-bottom:10px;
+      color:#0056b3;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .preview-field {
+      margin:6px 0;
+      font-size:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .preview-actions { display:flex; gap:10px; }
+    .btn-action {
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid #d7e7ff;
+      background:transparent;
+      cursor:pointer;
+    }
+    .btn-primary {
+      background:#0056b3;
+      color:#fff;
+      border:0;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .helper { transition:opacity .2s; opacity:0; color:#0056b3; margin-top:8px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+  <img src="images/logo.png" alt="CareerCraft Logo">
+  <span>CareerCraft</span>
+</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="personal_info.html" class="active">Personal Info</a>
+      <a href="education.html" class="btn-next-top">Next</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero" aria-label="Personal information introduction">
+    <div class="hero-inner reveal">
+      <div class="hero-left">
+        <h1>Personal Information</h1>
+        <p>Enter your details once — we will use them to create a clean, recruiter-ready resume.</p>
+        <a class="cta" href="#form-card">Get Started</a>
+      </div>
+
+      <div class="hero-right">
+        <img src="images/personal.jpg" alt="Resume illustration">
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+<section class="form-section" aria-label="Personal details form">
+  <div class="form-card reveal" id="form-card">
+    
+    <h2>Personal Information</h2>
+    <p class="lead">Complete these fields to display accurate contact information on your resume.</p>
+
+    <form id="personalForm" onsubmit="return false;">
+      <div class="form-grid">
+
+        <div>
+          <label for="fullName">Full Name</label>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            placeholder="Your name"
+            required
+            aria-required="true"
+          >
+        </div>
+
+        <div>
+          <label for="email">Email Address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="you@example.com"
+            required
+            aria-required="true"
+          >
+        </div>
+
+        <div>
+          <label for="phone">Phone Number</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="+91 9xxxxxxxxx"
+            pattern="[6-9]{1}[0-9]{9}"
+            title="Enter valid 10-digit Indian mobile number"
+            required
+            aria-required="true"
+          >
+        </div>
+
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input id="dob" name="dob" type="date">
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" placeholder="City, State, Country"></textarea>
+        </div>
+
+        <div>
+          <label for="linkedin">LinkedIn Profile</label>
+          <input
+            id="linkedin"
+            name="linkedin"
+            type="url"
+            placeholder="https://linkedin.com/in/yourprofile"
+          >
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top:12px;">
+        <button type="button" class="save-btn btn-primary" id="saveBtn">Save Details</button>
+        <button type="button" class="btn-action" id="fillSavedBtn" title="Fill form with saved data (if any)">Fill Saved</button>
+      </div>
+
+      <p class="helper" id="saveMsg">✅ Saved successfully</p>
+    </form>
+
+
+
+      <!-- PREVIEW BOX WITH EDIT + CLEAR -->
+      <div class="preview-box" id="previewBox" aria-live="polite">
+        <h3>
+          Your Information
+          <span class="preview-actions">
+            <button class="btn-action" id="editBtn">Edit</button>
+            <button class="btn-action" id="clearBtn" title="Clear saved info">Clear</button>
+          </span>
+        </h3>
+
+        <div class="preview-field"><strong>Full Name</strong><span id="prevName">—</span></div>
+        <div class="preview-field"><strong>Email</strong><span id="prevEmail">—</span></div>
+        <div class="preview-field"><strong>Phone</strong><span id="prevPhone">—</span></div>
+        <div class="preview-field"><strong>Date of Birth</strong><span id="prevDOB">—</span></div>
+        <div class="preview-field" style="align-items:flex-start;"><strong>Address</strong><span id="prevAddress">—</span></div>
+        <div class="preview-field"><strong>LinkedIn</strong><span id="prevLinkedIn">—</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  
+
+  <script>
+    /* Reveal animation */
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+
+    // Form refs
+    const fullName = document.getElementById('fullName');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const dob = document.getElementById('dob');
+    const address = document.getElementById('address');
+    const linkedin = document.getElementById('linkedin');
+
+    // Buttons & preview refs
+    const saveBtn = document.getElementById('saveBtn');
+    const saveMsg = document.getElementById('saveMsg');
+    const nextBtnTop = document.querySelector('.btn-next-top');
+    const editBtn = document.getElementById('editBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const fillSavedBtn = document.getElementById('fillSavedBtn');
+    // Disable save button until required fields are filled
+function toggleSaveBtn() {
+  saveBtn.disabled =
+    !fullName.value.trim() ||
+    !email.value.trim() ||
+    !phone.value.trim();
+
+  saveBtn.style.opacity = saveBtn.disabled ? "0.6" : "1";
+}
+
+// Listen for input changes
+[fullName, email, phone].forEach(input => {
+  input.addEventListener("input", toggleSaveBtn);
+});
+
+// Initial check on page load
+toggleSaveBtn();
+    const prevName = document.getElementById('prevName');
+    const prevEmail = document.getElementById('prevEmail');
+    const prevPhone = document.getElementById('prevPhone');
+    const prevDOB = document.getElementById('prevDOB');
+    const prevAddress = document.getElementById('prevAddress');
+    const prevLinkedIn = document.getElementById('prevLinkedIn');
+
+    // Redirect helper
+    const redirectToEducation = () => window.location.href = "education.html";
+
+    // Update preview display
+    function updatePreview(data) {
+      prevName.textContent = data.name || '—';
+      prevEmail.textContent = data.email || '—';
+      prevPhone.textContent = data.phone || '—';
+      prevDOB.textContent = data.dob || '—';
+      prevAddress.textContent = data.address || '—';
+      prevLinkedIn.innerHTML = data.linkedin
+        ? `<a href="${data.linkedin}" target="_blank">View Profile</a>`
+        : '—';
+
+    }
+
+    // Load saved data (if any) on page load
+    function loadSaved() {
+      try {
+        const existing = JSON.parse(localStorage.getItem('personalInfo'));
+        if (existing) {
+          updatePreview(existing);
+          return existing;
+        } else {
+          updatePreview({});
+          return null;
+        }
+      } catch (e) {
+        console.warn('Could not parse saved personalInfo', e);
+        updatePreview({});
+        return null;
+      }
+    }
+
+    // Fill the form inputs from an object
+    function fillForm(data) {
+      fullName.value = data.name || '';
+      email.value = data.email || '';
+      phone.value = data.phone || '';
+      dob.value = data.dob || '';
+      address.value = data.address || '';
+      linkedin.value = data.linkedin || '';
+    }
+
+    // Clear saved data and UI
+    function clearSaved() {
+      if (!confirm('Clear saved personal information? This cannot be undone.')) return;
+      localStorage.removeItem('personalInfo');
+      fillForm({}); // clear form
+      updatePreview({});
+      saveMsg.style.opacity = '0';
+    }
+
+    // Save handler
+    saveBtn.onclick = () => {
+
+  // 1️⃣ REQUIRED VALIDATION
+  if (!fullName.value.trim() || !email.value.trim() || !phone.value.trim()) {
+    alert("Please fill Full Name, Email and Phone Number");
+    return;
+  }
+
+  // 2️⃣ FORMAT VALIDATION
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phonePattern = /^[6-9]\d{9}$/;
+
+  if (!emailPattern.test(email.value.trim())) {
+    alert("Please enter a valid email address");
+    email.focus();
+    return;
+  }
+
+  if (!phonePattern.test(phone.value.trim())) {
+    alert("Please enter a valid Indian phone number");
+    phone.focus();
+    return;
+  }
+
+  // 3️⃣ SAVE DATA
+  const data = {
+    name: fullName.value.trim(),
+    email: email.value.trim(),
+    phone: phone.value.trim(),
+    dob: dob.value,
+    address: address.value.trim(),
+    linkedin: linkedin.value.trim()
+  };
+
+      localStorage.setItem('personalInfo', JSON.stringify(data));
+      updatePreview(data);
+
+      saveMsg.style.opacity = '1';
+      setTimeout(() => saveMsg.style.opacity = '0', 900);
+
+      // small delay so user sees the saved message, then redirect (keeps previous behavior)
+      setTimeout(() => redirectToEducation(), 1000);
+    };
+
+    // Edit button: load saved data into the form so user can edit
+    editBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('personalInfo')) || {};
+      fillForm(saved);
+      // focus first field and scroll to form
+      fullName.focus();
+      document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // Clear button
+    clearBtn.onclick = clearSaved;
+
+    // "Fill Saved" quick helper: populate form with saved data but don't scroll or redirect
+    fillSavedBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('personalInfo')) || {};
+      fillForm(saved);
+      if (!Object.keys(saved).length) {
+        alert('No saved data found.');
+      } else {
+        saveMsg.style.opacity = '1';
+        setTimeout(() => saveMsg.style.opacity = '0', 900);
+      }
+    };
+
+    // Next button triggers save (keeps previous behavior)
+    if (nextBtnTop) {
+      nextBtnTop.onclick = (e) => {
+        e.preventDefault();
+        saveBtn.click();
+      };
+    }
+
+    // Initialize
+    loadSaved();
+  </script>
+
+  <!-- Footer -->
+  <footer aria-label="Footer">
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+          <h4 style="font-size: 24px;">CareerCraft</h4>
+        </div>
+        <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@careercraft.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

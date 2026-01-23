@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareerCraft | Experience Details</title>
+  <link rel="stylesheet" href="personal_info.css">
+  <style>
+    /* Preview card + actions (kept in-page for quick demo) */
+    .preview-box {
+      background:#eef6ff;
+      padding:18px;
+      border-radius:12px;
+      margin-top:24px;
+    }
+    .preview-box h3 {
+      margin-bottom:10px;
+      color:#0056b3;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .preview-field {
+      margin:6px 0;
+      font-size:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .preview-actions { display:flex; gap:10px; }
+    .btn-action {
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid #d7e7ff;
+      background:transparent;
+      cursor:pointer;
+    }
+    .btn-primary {
+      background:#0056b3;
+      color:#fff;
+      border:0;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .helper { transition:opacity .2s; opacity:0; color:#0056b3; margin-top:8px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+  <img src="images/logo.png" alt="CareerCraft Logo">
+  <span>CareerCraft</span>
+</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="personal_info.html">Personal Info</a>
+      <a href="education.html">Education</a>
+      <a href="experience.html" class="active">Experience</a>
+      <a href="expertise.html" class="btn-next-top">Next</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner reveal">
+      <div class="hero-left">
+        <h1>Experience Details</h1>
+        <p>Add your past internships, projects, and job experience to strengthen your resume.</p>
+        <a class="cta" href="#form-card">Add Experience</a>
+      </div>
+
+      <div class="hero-right">
+        <img src="images/experience.png" alt="Experience illustration">
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="form-section">
+    <div class="form-card reveal" id="form-card">
+
+      <h2>Experience Details</h2>
+      <p class="lead">Share your work experience and responsibilities.</p>
+
+      <form id="expForm" onsubmit="return false;">
+        <div class="form-grid">
+
+          <div>
+           <label for="company">Organization Name</label>
+           <input id="company" type="text" placeholder="e.g. ABC Technologies Pvt. Ltd.">
+          </div>
+
+          <div>
+            <label for="role">Designation</label>
+            <input id="role" type="text" placeholder="e.g. Frontend Developer Intern">
+          </div>
+
+          <div>
+            <label for="duration">Employment Duration</label>
+            <input id="duration" type="text" placeholder="e.g. Jan 2024 – Mar 2024">
+          </div>
+
+          <div style="grid-column: 1 / -1;">
+            <label for="responsibilities">Key Responsibilities</label>
+            <textarea id="responsibilities"
+             placeholder="Briefly describe your responsibilities, tools used, and contributions"></textarea>
+          </div>
+
+        </div>
+
+        <div class="actions" style="margin-top:12px;">
+          <button type="button" class="save-btn btn-primary" id="saveExpBtn">Save Experience</button>
+          <button type="button" class="btn-action" id="fillExpSavedBtn" title="Fill form with saved data (if any)">Fill Saved</button>
+        </div>
+
+        <p class="helper" id="expSaveMsg">✅ Experience details saved</p>
+      </form>
+
+      <!-- PREVIEW BOX WITH EDIT + CLEAR -->
+      <div class="preview-box" id="previewBox" aria-live="polite">
+        <h3>
+          Your Experience
+          <span class="preview-actions">
+            <button class="btn-action" id="editExpBtn">Edit</button>
+            <button class="btn-action" id="clearExpBtn" title="Clear saved info">Clear</button>
+          </span>
+        </h3>
+
+        <div class="preview-field"><strong>Company</strong><span id="prevCompany">—</span></div>
+        <div class="preview-field"><strong>Designation</strong><span id="prevRole">—</span></div>
+        <div class="preview-field"><strong>Duration</strong><span id="prevDuration">—</span></div>
+        <div class="preview-field" style="align-items:flex-start;"><strong>Key Contributions</strong><span id="prevResponsibilities">—</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+          <h4 style="font-size: 24px;">CareerCraft</h4>
+        </div>
+        <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@careercraft.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    /* Reveal animation - intersection observer (keeps your previous behavior but unobtrusive) */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Form refs
+    const company = document.getElementById('company');
+    const role = document.getElementById('role');
+    const duration = document.getElementById('duration');
+    const responsibilities = document.getElementById('responsibilities');
+
+    // Buttons & preview refs
+    const saveExpBtn = document.getElementById('saveExpBtn');
+    const expSaveMsg = document.getElementById('expSaveMsg');
+    const nextBtnTop = document.querySelector('.btn-next-top');
+    const editExpBtn = document.getElementById('editExpBtn');
+    const clearExpBtn = document.getElementById('clearExpBtn');
+    const fillExpSavedBtn = document.getElementById('fillExpSavedBtn');
+
+    const prevCompany = document.getElementById('prevCompany');
+    const prevRole = document.getElementById('prevRole');
+    const prevDuration = document.getElementById('prevDuration');
+    const prevResponsibilities = document.getElementById('prevResponsibilities');
+
+    // 🔒 Disable Save button until required fields are filled
+function toggleExpSaveBtn() {
+  const isDisabled =
+    !company.value.trim() ||
+    !role.value.trim() ||
+    !duration.value.trim();
+
+  saveExpBtn.disabled = isDisabled;
+  saveExpBtn.style.opacity = isDisabled ? "0.6" : "1";
+}
+
+// Listen to input changes
+[company, role, duration].forEach(input => {
+  input.addEventListener("input", toggleExpSaveBtn);
+});
+
+// Initial check
+toggleExpSaveBtn();
+
+
+    // Redirect helper (keeps same flow as other pages)
+    const redirectToExpertise = () => window.location.href = "expertise.html";
+
+    // Update preview display
+    function updatePreview(data) {
+      if (!data.company && !data.role && !data.duration && !data.responsibilities) {
+      prevCompany.textContent = "No experience added yet";
+      prevRole.textContent = "—";
+      prevDuration.textContent = "—";
+      prevResponsibilities.textContent = "—";
+      return;
+    }
+
+      prevCompany.textContent = data.company || '—';
+      prevRole.textContent = data.role || '—';
+      prevDuration.textContent = data.duration || '—';
+      prevResponsibilities.textContent = data.responsibilities || '—';
+  }
+
+
+    // Load saved data (if any) on page load
+    function loadSavedExp() {
+      try {
+        const existing = JSON.parse(localStorage.getItem('expInfo'));
+        if (existing) {
+          updatePreview(existing);
+          return existing;
+        } else {
+          updatePreview({});
+          return null;
+        }
+      } catch (e) {
+        console.warn('Could not parse saved expInfo', e);
+        updatePreview({});
+        return null;
+      }
+    }
+
+    // Fill the form inputs from an object
+    function fillExpForm(data) {
+      company.value = data.company || '';
+      role.value = data.role || '';
+      duration.value = data.duration || '';
+      responsibilities.value = data.responsibilities || '';
+    }
+
+    // Clear saved data and UI
+    function clearSavedExp() {
+      if (!confirm('Clear saved experience information? This cannot be undone.')) return;
+      localStorage.removeItem('expInfo');
+      fillExpForm({}); // clear form
+      updatePreview({});
+      expSaveMsg.style.opacity = '0';
+    }
+    // NOTE (Future Enhancement):
+    // Support multiple experience entries using array structure in localStorage
+    // Example: expInfo = [{...}, {...}]
+    // This page stores experience data temporarily using localStorage
+    // Future scope: sync with backend database and support multiple experience entries
+
+    // Save handler
+    saveExpBtn.onclick = () => {
+      if (responsibilities.value.trim().length < 10) {
+        alert("Please describe responsibilities in brief (at least 10 characters).");
+        return;
+      }
+
+      const data = {
+        company: company.value.trim(),
+        role: role.value.trim(),
+        duration: duration.value.trim(),
+        responsibilities: responsibilities.value.replace(/\s+/g, ' ').trim()
+      };
+
+      localStorage.setItem('expInfo', JSON.stringify(data));
+      updatePreview(data);
+
+      expSaveMsg.style.opacity = '1';
+      setTimeout(() => expSaveMsg.style.opacity = '0', 900);
+
+      // small delay so user sees saved message, then redirect
+      setTimeout(() => {
+        if (!document.activeElement || document.activeElement !== editExpBtn) {
+         redirectToExpertise();
+         }
+        }, 1000);
+
+
+      document.getElementById('previewBox').scrollIntoView({ behavior: 'smooth' });
+
+      toggleExpSaveBtn();
+    };
+
+    // Edit button: load saved data into the form so user can edit
+    editExpBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('expInfo')) || {};
+      fillExpForm(saved);
+      // focus first field and scroll to form
+      company.focus();
+      document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // Clear button
+    clearExpBtn.onclick = clearSavedExp;
+
+    // "Fill Saved" quick helper: populate form with saved data but don't scroll or redirect
+    fillExpSavedBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('expInfo')) || {};
+      fillExpForm(saved);
+      if (!Object.keys(saved).length) {
+        alert('No saved data found.');
+      } else {
+        expSaveMsg.style.opacity = '1';
+        setTimeout(() => expSaveMsg.style.opacity = '0', 900);
+      }
+    };
+
+    // Next button triggers save (keeps previous behavior if you have a top next nav)
+    if (nextBtnTop) {
+      nextBtnTop.onclick = (e) => {
+        e.preventDefault();
+        saveExpBtn.click();
+      };
+    }
+
+    // Initialize
+    loadSavedExp();
+  </script>
+
+</body>
+
+</html>

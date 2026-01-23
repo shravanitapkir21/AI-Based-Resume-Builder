@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact | CareerCraft</title>
+
+<style>
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #104278;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* space between icon & text */
+  font-size: 24px;           /* CareerCraft text size */
+  font-weight: 700;
+  color: #007bff;
+}
+
+.logo img {
+  width: 55px;               /* 🔥 increase logo size */
+  height: 50px;
+  object-fit: contain;
+}
+
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+nav ul li a:hover {
+  color: #0056b3;
+}
+nav ul li a.active {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
+  padding-bottom: 4px;
+}
+.btn-small {
+  background: #007bff;
+  color: white !important;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+.btn-small:hover {
+  background: #0056b3;
+}
+/* ===== CONTACT SECTION ===== */
+.contact-section {
+  padding: 80px 10%;
+  background: #f7faff;
+}
+
+.contact-box {
+  max-width: 1000px;
+  margin: auto;
+  background: #ffffff;
+  padding: 60px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  display: flex;
+  gap: 50px;
+}
+
+.contact-left {
+  flex: 1.2;
+}
+
+.contact-right {
+  flex: 1;
+}
+
+/* TEXT */
+.contact-left h1 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.contact-left p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+/* FORM */
+input, textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+button {
+  width: 100%;
+  background: #062845;
+  color: white;
+  padding: 14px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0b5ed7;
+}
+
+/* RIGHT INFO */
+.contact-right h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.contact-right p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: #062845;
+  color: white;
+  padding: 60px 10% 30px;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.footer-container div {
+  width: 250px;
+}
+footer h4 {
+  margin-bottom: 10px;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+.copy {
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 15px;
+  font-size: 14px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  header { padding: 12px 20px; }
+  .hero { padding: 40px 6%; flex-direction: column; gap: 18px; }
+  .hero-right img { width: 220px; height: auto; float: none; margin: 0 auto; display:block; }
+  .step-container { gap: 20px; }
+  .faq { padding: 60px 6%; }
+  .footer-container { gap: 20px; justify-content:center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+  <header>
+    <div class="logo">
+  <img src="images/logo.png" alt="CareerCraft Logo">
+  <span>CareerCraft</span>
+</div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html"><b>Home</b></a></li>
+        <li><a href="templates.html"><b>Templates</b></a></li>
+        <li><a href="contact.html" class="active"><b>Contact</b></a></li>
+        <li><a href="personal_info.html" class="btn-small">Create Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+<section class="contact-section">
+  <div class="contact-box">
+
+    <div class="contact-left">
+      <h1>Contact Us</h1>
+      <p>Have questions or feedback? We'd love to hear from you.</p>
+
+      <input type="text" placeholder="Your Full Name">
+      <input type="email" placeholder="Your Email Address">
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Write your message..."></textarea>
+      <button>Send Message</button>
+    </div>
+
+    <div class="contact-right">
+      <h3>CareerCraft Support</h3>
+      <p><b>Email:</b> support@careercraft.com</p>
+      <p><b>Purpose:</b> Resume Building & Career Guidance</p>
+      <p><b>Availability:</b> Mon – Sat (10 AM – 6 PM)</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+          <h4 style="font-size: 24px;">CareerCraft</h4>
+        </div>
+        <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contact.html" class="active"><b>Contact</b></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@careercraft.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

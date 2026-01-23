@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resume Templates | CareerCraft</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins, sans-serif;
+}
+body{ background:#eef2f6; }
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* space between icon & text */
+  font-size: 24px;           /* CareerCraft text size */
+  font-weight: 700;
+  color: #007bff;
+}
+
+.logo img {
+  width: 55px;               /* 🔥 increase logo size */
+  height: 50px;
+  object-fit: contain;
+}
+
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+nav ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+  transition: 0.3s;
+}
+nav ul li a:hover {
+  color: #0056b3;
+}
+nav ul li a.active {
+  color: #0056b3;
+  border-bottom: 2px solid #0056b3;
+  padding-bottom: 4px;
+}
+.btn-small {
+  background: #007bff;
+  color: white !important;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+.btn-small:hover {
+  background: #0056b3;
+}
+
+/* PAGE */
+.container{
+  max-width:1200px;
+  margin:80px auto;
+}
+h1{
+  text-align:center;
+  margin-bottom:50px;
+  color:#0b3c5d;
+}
+
+/* GRID */
+.template-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:40px;
+}
+
+.template-card{
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  overflow:hidden;
+  transition:.3s;
+}
+.template-card:hover{
+  transform:translateY(-10px);
+}
+
+/* MINI RESUME PREVIEW */
+.preview{
+  height:420px;                 /* 🔥 SAME HEIGHT */
+  display:grid;
+  grid-template-columns:35% 65%;
+}
+
+/* LEFT SIDE */
+.preview-left{
+  background:#f2f2f2;
+  padding:18px;
+}
+.preview-name{
+  font-size:14px;
+  font-weight:700;
+}
+.preview-title{
+  font-size:11px;
+  margin-bottom:12px;
+}
+.preview-block{
+  font-size:10px;
+  margin-bottom:8px;
+  opacity:.75;
+}
+
+/* RIGHT SIDE */
+.preview-right{
+  padding:18px;
+}
+.preview-heading{
+  font-size:11px;
+  font-weight:600;
+  color:#007bff;
+  margin-bottom:6px;
+}
+.preview-text{
+  font-size:10px;
+  line-height:1.4;
+  margin-bottom:10px;
+}
+
+/* BUTTON */
+.template-footer{
+  text-align:center;
+  padding:18px;
+}
+.btn{
+  background:linear-gradient(135deg,#007bff,#0056b3);
+  color:#fff;
+  padding:10px 26px;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+/* FOOTER */
+footer {
+  background: #062845;
+  color: white;
+  padding: 60px 10% 30px;
+}
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.footer-container div {
+  width: 250px;
+}
+footer h4 {
+  margin-bottom: 10px;
+}
+footer a {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+.copy {
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 15px;
+  font-size: 14px;
+}
+/* 🔧 Footer size fix for large screens */
+.footer-container div {
+  width: 280px;
+}
+
+footer h4 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+footer p,
+footer a {
+  font-size: 15px;
+  line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="images/logo.png" alt="CareerCraft Logo">
+    <span>CareerCraft</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="index.html"><b>Home</b></a></li>
+      <li><a href="templates.html" class="active"><b>Templates</b></a></li>
+      <li><a href="contact.html"><b>Contact</b></a></li>
+      <li><a href="personal_info.html" class="btn-small">Create Resume</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container">
+<h1>Choose Your Resume Template</h1>
+
+<div class="template-grid">
+
+<!-- TEMPLATE 1 -->
+<div class="template-card">
+  <div class="preview">
+    <div class="preview-left">
+      <div class="preview-name">YOUR NAME</div>
+      <div class="preview-title">JOB TITLE</div>
+      <div class="preview-block">Email • Phone</div>
+      <div class="preview-block">Education</div>
+      <div class="preview-block">Skills</div>
+    </div>
+    <div class="preview-right">
+      <div class="preview-heading">PROFILE</div>
+      <div class="preview-text">Short professional summary...</div>
+      <div class="preview-heading">PROJECTS</div>
+      <div class="preview-text">Resume Builder App</div>
+    </div>
+  </div>
+  <div class="template-footer">
+    <a href="template1.html" class="btn">Use this template</a>
+  </div>
+</div>
+
+<!-- TEMPLATE 2 (Dark Left) -->
+<div class="template-card">
+  <div class="preview">
+    <div class="preview-left" style="background:#0b3c5d;color:#fff;">
+      <div class="preview-name">YOUR NAME</div>
+      <div class="preview-title">JOB TITLE</div>
+      <div class="preview-block">Contact</div>
+      <div class="preview-block">Skills</div>
+    </div>
+    <div class="preview-right">
+      <div class="preview-heading">SUMMARY</div>
+      <div class="preview-text">Clean modern resume layout</div>
+      <div class="preview-heading">EDUCATION</div>
+      <div class="preview-text">Degree • College</div>
+    </div>
+  </div>
+  <div class="template-footer">
+    <a href="template2.html" class="btn">Use this template</a>
+  </div>
+</div>
+
+<!-- TEMPLATE 3 (Minimal) -->
+<div class="template-card">
+  <div class="preview">
+    <div class="preview-left" style="background:#007bff;color:#fff;">
+      <div class="preview-name">YOUR NAME</div>
+      <div class="preview-title">JOB TITLE</div>
+    </div>
+    <div class="preview-right">
+      <div class="preview-heading">PROFILE</div>
+      <div class="preview-text">Minimal & clean design</div>
+      <div class="preview-heading">SKILLS</div>
+      <div class="preview-text">HTML, CSS, Java</div>
+    </div>
+  </div>
+  <div class="template-footer">
+    <a href="template3.html" class="btn">Use this template</a>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+        <h4 style="font-size: 24px;">CareerCraft</h4>
+      </div>
+      <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="templates.html">Templates</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>Email: support@careercraft.com</p>
+      <p>Phone: +91 98765 43210</p>
+    </div>
+  </div>
+  <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

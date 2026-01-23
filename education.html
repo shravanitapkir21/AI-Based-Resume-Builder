@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareerCraft | Education Details</title>
+  <link rel="stylesheet" href="personal_info.css">
+  <style>
+    /* Preview card + actions (kept in-page for quick demo) */
+    .preview-box {
+      background:#eef6ff;
+      padding:18px;
+      border-radius:12px;
+      margin-top:24px;
+    }
+    .preview-box h3 {
+      margin-bottom:10px;
+      color:#0056b3;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .preview-field {
+      margin:6px 0;
+      font-size:15px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .preview-actions { display:flex; gap:10px; }
+    .btn-action {
+      padding:8px 12px;
+      border-radius:8px;
+      border:1px solid #d7e7ff;
+      background:transparent;
+      cursor:pointer;
+    }
+    .btn-primary {
+      background:#0056b3;
+      color:#fff;
+      border:0;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    }
+    .helper { transition:opacity .2s; opacity:0; color:#0056b3; margin-top:8px; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+  <img src="images/logo.png" alt="CareerCraft Logo">
+  <span>CareerCraft</span>
+</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="personal_info.html">Personal Info</a>
+      <a href="education.html" class="active">Education</a>
+      <a href="experience.html" class="btn-next-top">Next</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-inner reveal">
+      <div class="hero-left">
+        <h1>Education Details</h1>
+        <p>Enter your academic information to showcase your qualifications on your resume.</p>
+        <a class="cta" href="#form-card">Add Details</a>
+      </div>
+
+      <div class="hero-right">
+        <img src="images/education.jpg" alt="Education illustration">
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="form-section">
+    <div class="form-card reveal" id="form-card">
+      <h2>Education Details</h2>
+      <p class="lead">Fill in the details of your academic background.</p>
+
+      <form id="educationForm" onsubmit="return false;">
+        <div class="form-grid">
+
+          <div>
+            <label for="degree">Degree / Qualification</label>
+            <input id="degree" type="text" placeholder="Enter your highest qualification"required>
+          </div>
+
+          <div>
+            <label for="institute">Institute / College Name</label>
+            <input id="institute" type="text" placeholder="Enter institute or college name"required>
+          </div>
+
+          <div>
+            <label for="board">Board / University</label>
+            <input id="board" type="text" placeholder="Enter board or university name">
+          </div>
+
+          <div>
+            <label for="year">Passing Year</label>
+            <input id="year" type="number" placeholder="Enter year of completion" min="1950" max="2099"required aria-required="true" title="Enter a valid passing year">
+          </div>
+
+          <div>
+            <label for="percentage">Percentage / CGPA</label>
+            <input id="percentage" type="text" placeholder="Enter percentage or CGPA">
+          </div>
+
+        </div>
+
+        <div class="actions" style="margin-top:12px;">
+          <button type="button" class="save-btn btn-primary" id="saveEduBtn">Save Education</button>
+          <button type="button" class="btn-action" id="fillEduSavedBtn" title="Fill form with saved data (if any)">Fill Saved</button>
+        </div>
+
+        <p class="helper" id="eduSaveMsg">✅ Education details saved</p>
+      </form>
+
+      <!-- PREVIEW BOX WITH EDIT + CLEAR -->
+      <div class="preview-box" id="previewBox" aria-live="polite">
+        <h3>
+          Education Information
+          <span class="preview-actions">
+            <button class="btn-action" id="editEduBtn">Edit</button>
+            <button class="btn-action" id="clearEduBtn" title="Clear saved info">Clear</button>
+          </span>
+        </h3>
+
+        <div class="preview-field"><strong>Degree</strong><span id="prevDegree">—</span></div>
+        <div class="preview-field"><strong>Institute</strong><span id="prevInstitute">—</span></div>
+        <div class="preview-field"><strong>Board / University</strong><span id="prevBoard">—</span></div>
+        <div class="preview-field"><strong>Passing Year</strong><span id="prevYear">—</span></div>
+        <div class="preview-field"><strong>Percentage / CGPA</strong><span id="prevPercentage">—</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+          <img src="images/logo.png" alt="CareerCraft Logo" style="width: 40px; height: auto;">
+          <h4 style="font-size: 24px;">CareerCraft</h4>
+        </div>
+        <p style="font-size: 16px;">Smart Resume Builder for modern job seekers. Build, edit, and print with ease.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="templates.html">Templates</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Email: support@careercraft.com</p>
+        <p>Phone: +91 98765 43210</p>
+      </div>
+    </div>
+    <p class="copy">© 2025 CareerCraft. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    /* Reveal animation - intersection observer (keeps your previous behavior but unobtrusive) */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Form refs
+    const degree = document.getElementById('degree');
+    const institute = document.getElementById('institute');
+    const board = document.getElementById('board');
+    const year = document.getElementById('year');
+    const percentage = document.getElementById('percentage');
+
+    // Buttons & preview refs
+    const saveEduBtn = document.getElementById('saveEduBtn');
+    const eduSaveMsg = document.getElementById('eduSaveMsg');
+    const nextBtnTop = document.querySelector('.btn-next-top');
+    const editEduBtn = document.getElementById('editEduBtn');
+    const clearEduBtn = document.getElementById('clearEduBtn');
+    const fillEduSavedBtn = document.getElementById('fillEduSavedBtn');
+
+    const prevDegree = document.getElementById('prevDegree');
+    const prevInstitute = document.getElementById('prevInstitute');
+    const prevBoard = document.getElementById('prevBoard');
+    const prevYear = document.getElementById('prevYear');
+    const prevPercentage = document.getElementById('prevPercentage');
+    
+    // 🔒 Disable Save button until required fields are filled
+    function toggleEduSaveBtn() {
+    const isDisabled =
+    !degree.value.trim() ||
+    !institute.value.trim() ||
+    !year.value.trim();
+
+  saveEduBtn.disabled = isDisabled;
+  saveEduBtn.style.opacity = isDisabled ? "0.6" : "1";
+}
+
+// 👂 Listen to input changes
+[degree, institute, year].forEach(input => {
+  input.addEventListener("input", toggleEduSaveBtn);
+});
+
+// 🚀 Initial check on page load
+toggleEduSaveBtn();
+
+    // Redirect helper (keeps same flow as personal info page)
+    const redirectToExperience = () => window.location.href = "experience.html";
+
+    // Update preview display
+    function updatePreview(data) {
+      prevDegree.textContent = data.degree || '—';
+      prevInstitute.textContent = data.institute || '—';
+      prevBoard.textContent = data.board || '—';
+      prevYear.textContent = data.year || '—';
+      prevPercentage.textContent = data.percentage || '—';
+    }
+
+    // Load saved data (if any) on page load
+    function loadSavedEdu() {
+      try {
+        const existing = JSON.parse(localStorage.getItem('educationInfo'));
+        if (existing) {
+          updatePreview(existing);
+          return existing;
+        } else {
+          updatePreview({});
+          return null;
+        }
+      } catch (e) {
+        console.warn('Could not parse saved educationInfo', e);
+        updatePreview({});
+        return null;
+      }
+    }
+
+    // Fill the form inputs from an object
+    function fillEduForm(data) {
+      degree.value = data.degree || '';
+      institute.value = data.institute || '';
+      board.value = data.board || '';
+      year.value = data.year || '';
+      percentage.value = data.percentage || '';
+    }
+
+    // Clear saved data and UI
+    function clearSavedEdu() {
+      if (!confirm('Clear saved education information? This cannot be undone.')) return;
+      localStorage.removeItem('educationInfo');
+      fillEduForm({}); // clear form
+      updatePreview({});
+      eduSaveMsg.style.opacity = '0';
+    }
+
+    // Save handler
+    saveEduBtn.onclick = () => {
+      
+       if (percentage.value && isNaN(percentage.value)) {
+        alert("Enter valid percentage or CGPA");
+        return;
+      }
+
+    // ✅ Passing year validation
+       const currentYear = new Date().getFullYear();
+       const yearValue = parseInt(year.value.trim(), 10);
+
+        if (yearValue < 1950 || yearValue > currentYear + 5) {
+         alert("Please enter a valid passing year");
+         year.focus();
+         return;
+        }
+
+      const data = {
+        degree: degree.value.trim(),
+        institute: institute.value.trim(),
+        board: board.value.trim(),
+        year: Number(year.value),
+        percentage: percentage.value.trim()
+      };
+
+      localStorage.setItem('educationInfo', JSON.stringify(data));
+      updatePreview(data);
+
+      eduSaveMsg.style.opacity = '1';
+      setTimeout(() => eduSaveMsg.style.opacity = '0', 900);
+
+      // small delay so user sees the saved message, then redirect (keeps previous behavior)
+      setTimeout(() => redirectToExperience(), 1000);
+    };
+
+    // Edit button: load saved data into the form so user can edit
+    editEduBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('educationInfo')) || {};
+      fillEduForm(saved);
+      // focus first field and scroll to form
+      degree.focus();
+      document.getElementById('form-card').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // Clear button
+    clearEduBtn.onclick = clearSavedEdu;
+
+    // "Fill Saved" quick helper: populate form with saved data but don't scroll or redirect
+    fillEduSavedBtn.onclick = () => {
+      const saved = JSON.parse(localStorage.getItem('educationInfo')) || {};
+      fillEduForm(saved);
+      if (!Object.keys(saved).length) {
+        alert('No saved data found.');
+      } else {
+        eduSaveMsg.style.opacity = '1';
+        setTimeout(() => eduSaveMsg.style.opacity = '0', 900);
+      }
+    };
+
+    // Next button triggers save (keeps previous behavior if you have a top next nav)
+    if (nextBtnTop) {
+      nextBtnTop.onclick = (e) => {
+        e.preventDefault();
+        saveEduBtn.click();
+      };
+    }
+
+    // Initialize
+    loadSavedEdu();
+  </script>
+  
+</body>
+</html>
